@@ -1,4 +1,4 @@
-import React from "react"
+import React, {Component} from "react"
 
 const BemVindo = (props) => {
   return (
@@ -37,6 +37,18 @@ const Social = (props) => {
   )
 }
 
+class NovaEquipe extends Component {
+  render() {
+    return (
+      <div>
+        <h2>Nome: {this.props.nome}! </h2>
+        <h3>Profissão: {this.props.cargo}</h3>
+        <h3>Idade: {this.props.idade} anos</h3>
+      </div>
+    )
+  }
+}
+
 export default function App() {
   return (
     <div>
@@ -49,6 +61,10 @@ export default function App() {
       <Equipe nome='Misael' cargo='Programador' idade='30' facebook='https://www.google.com.br/'/>
       <Equipe nome='Jheniffer' cargo='Recepcionista' idade='24' facebook='https://www.google.com.br/'/>
       <Equipe nome='Gustavo' cargo='Vendedor' idade='23' facebook='https://www.google.com.br/'/>
+      <br/>
+      <NovaEquipe nome='Raphael Veiga' cargo='Jogador' idade='28'/>
+      <hr/>
+      <NovaEquipe nome='Weverton' cargo='Goleiro' idade='35'/>
     </div>
   )
 }

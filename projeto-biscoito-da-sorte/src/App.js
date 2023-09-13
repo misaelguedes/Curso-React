@@ -4,6 +4,8 @@ import './App.css'
 
 export default function App() {
 
+  const [imagem, setImagem] = useState(require('./assets/biscoito.png'))
+
   const [textoFrase, setTextoFrase] = useState('')
 
   const [frases, setFrases] = useState([
@@ -14,11 +16,12 @@ export default function App() {
     let numeroAleatorio = Math.floor(Math.random() * frases.length)
     let fraseExibida = '" ' + frases[numeroAleatorio] + ' "'
     setTextoFrase(fraseExibida)
+    setImagem(require('./assets/biscoito-aberto.png'))
   }
 
   return (
     <div className='container'>
-      <img src={require('./assets/biscoito.png')} className='img'/>
+      <img src={imagem} className='img'/>
       <Botao nome='Abrir biscoito' acaoBtn={quebraBiscoito}/>
       <h3 className='textoFrase'>{textoFrase}</h3>
     </div>

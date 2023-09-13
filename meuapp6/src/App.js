@@ -2,49 +2,33 @@ import { useState } from "react"
 
 export default function App() {
 
-  const [email, setEmail] = useState({
-    email: ''
-})
+  const [nome, setNome] = useState('')
 
-  const [senha, setSenha] = useState({
-    senha: ''
-  })
+  const [email, setEmail] = useState('')
 
-  const [sexo,setSexo] = useState({
-    sexo: 'masculino'
-  })
+  const [senha, setSenha] = useState('')
 
-const trocaEmail = (e) => {
-  const novoEmail = e.target.value;
-  setEmail({email: novoEmail})
-}
-
-const trocaSenha = (e) => {
-  const novaSenha = e.target.value;
-  setSenha({senha: novaSenha})
-}
-
-const trocaSexo = (e) => {
-  const trocouSexo = e.target.value
-  setSexo({sexo: trocouSexo})
-}
+  const [sexo,setSexo] = useState('masculino')
 
   return (
     <div>
       <h2>Login</h2>
+      Nome:
+      <input type="text" name="nome" value={nome} onChange={(e) => setNome(e.target.value)}/> <br/><br/>
       E-mail:
-      <input type="email" name="email" value={email.email} onChange={trocaEmail}/> <br/><br/>
+      <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)}/> <br/><br/>
       Senha:
-      <input type="password" name="senha" value={senha.senha} onChange={trocaSenha}/> <br/><br/>
+      <input type="password" name="senha" value={senha} onChange={(e) => setSenha(e.target.value)}/> <br/><br/>
       Sexo:
-      <select name="sexo" value={sexo.sexo} onChange={trocaSexo}>
+      <select name="sexo" value={sexo} onChange={(e) => setSexo(e.target.value)}>
         <option value='masculino'>Masculino</option>
         <option value='feminino'>Feminino</option>
       </select>
       <div>
-        <h3>{email.email}</h3>
-        <h3>{senha.senha}</h3>
-        <h3>{sexo.sexo}</h3>
+        <h3>{nome}</h3>
+        <h3>{email}</h3>
+        <h3>{senha}</h3>
+        <h3>{sexo}</h3>
       </div>
     </div>
   )

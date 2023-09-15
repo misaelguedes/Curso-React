@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo} from "react"
+import React, {useState, useEffect, useMemo, useCallback} from "react"
 
 export default function App() {
 
@@ -18,10 +18,10 @@ export default function App() {
     localStorage.setItem('tarefas', JSON.stringify(tarefas))
   }, [tarefas])
 
-  function handleAdd() {
+  const handleAdd = useCallback(() => {
     setTarefas([...tarefas, input])
     setInput('')
-  }
+  }, [input, tarefas])
 
   const totalTarefas = useMemo(() => tarefas.length, [tarefas])
 
@@ -34,6 +34,7 @@ export default function App() {
       </ul>
       <br/>
       <strong>Você tem {totalTarefas} tarefas!</strong><br/>
+      <h3>Adicione as suas tarefas:</h3>
       <input type="text" value={input} onChange={e => setInput(e.target.value)}/>
       <button type="button" onClick={handleAdd}>Adicionar</button>
     </div>

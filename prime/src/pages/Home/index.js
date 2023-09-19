@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Api from '../../services/Api'
-
-///movie/550?api_key=88c0c86971e06bf331ef2635f0edb21b&language=pt-BR
+import {Link} from 'react-router-dom'
+import './home.css'
 
 export default function Home() {
 
@@ -9,14 +9,16 @@ export default function Home() {
 
     useEffect(() => {
         async function loadFilmes() {
-            const response = await Api.get('movie/550', {
+            const response = await Api.get('movie/now_playing', {
                 params: {
                     api_key: '88c0c86971e06bf331ef2635f0edb21b',
                     language: 'pt-BR',
                     page: 1
                 }
             })
-            console.log(response)
+
+            setFilmes(response.data.results.slice(0, 10))
+
         }
 
         loadFilmes()
@@ -24,8 +26,18 @@ export default function Home() {
     }, [])
 
     return (
-        <div>
-            <h1>Bem-vindo a Home</h1>
+        <div className='container'>
+            <div className='lista-filmes'>
+                {filmes.map((filme) => {
+                    return (
+                        <article key={filme.id}>
+                            <strong>{filme.title}</strong>
+                            <img src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`} alt={filme.title}/>
+                            <Link to={`/filme/${filme.id}`}>Acessar</Link>
+                        </article>
+                    )
+                })}
+            </div>
         </div>
     )
 }

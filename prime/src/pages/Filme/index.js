@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Api from '../../services/Api'
+import './Filme-info.css'
 
 export default function Filme() {
 
@@ -47,8 +48,14 @@ export default function Filme() {
 
             <h3>Sinopse</h3>
             <span>{filme.overview}</span>
-
             <strong>Avaliação: {filme.vote_average.toFixed(1)} / 10</strong>
+
+            <div className='area-buttons'>
+                <button>Salvar</button>
+                <button>
+                    <a href='#'>Trailer</a>
+                </button>
+            </div>
         </div>
     )
 }

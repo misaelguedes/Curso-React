@@ -1,6 +1,6 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { db } from "./firebaseConnection"
-import {doc, setDoc, collection, addDoc, getDoc, getDocs, updateDoc, deleteDoc} from 'firebase/firestore'
+import {doc, setDoc, collection, addDoc, getDoc, getDocs, updateDoc, deleteDoc, onSnapshot} from 'firebase/firestore'
 import './app.css'
 
 export default function App() {
@@ -9,6 +9,25 @@ export default function App() {
 
   const [posts, setPosts] = useState([])
   const [idPost, setIdPost] = useState('')
+
+  useEffect(() => {
+    async function loadPosts() {
+      const unsub = onSnapshot(collection(db, 'posts'), (snapshot) => {
+        const listaPost = []
+
+        snapshot.forEach((doc) => {
+          listaPost.push({
+            id: doc.id,
+            titulo: doc.data().Título,
+            autor: doc.data().Autor
+          })
+        })
+
+        setPosts(listaPost)
+      })
+    }
+    loadPosts()
+  },[])
 
   async function cadastrar() {
   /* Cadastrar com ID específico

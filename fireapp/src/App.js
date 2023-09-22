@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import { db, auth } from "./firebaseConnection"
 import {doc, setDoc, collection, addDoc, getDoc, getDocs, updateDoc, deleteDoc, onSnapshot} from 'firebase/firestore'
-import {createUserWithEmailAndPassword} from 'firebase/auth'
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from 'firebase/auth'
 import './app.css'
 
 export default function App() {
@@ -13,6 +13,9 @@ export default function App() {
 
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
+
+  const [user, setUser] = useState(false)
+  const [userDetail, setUserDetail] = useState({})
 
   useEffect(() => {
     async function loadPosts() {
@@ -139,9 +142,42 @@ export default function App() {
     })
   }
 
+  async function logarUsuario() {
+    await signInWithEmailAndPassword(auth, email, senha)
+    .then((value) => {
+      alert('Login feito com sucesso!')
+
+      setUserDetail({
+        uid: value.user.uid,
+        email: value.user.email
+      })
+
+      setEmail('')
+      setSenha('')
+      setUser(true)
+    })
+    .catch((error) => {
+      alert("Erro o tentar fazer login!" + error)
+    })
+  }
+
+  async function fazerLogout() {
+    await signOut(auth)
+    setUser(false)
+    setUserDetail('')
+  }
+
   return (
     <div>
       <h1>ReactJS + Firebase</h1>
+
+      {user && (
+        <div>
+          <strong>Seja bem-vindo(a) (Você está logado!)</strong> <br/>
+          <span>ID: {userDetail.uid} - E-mail: {userDetail.email}</span> <br/>
+          <button onClick={fazerLogout}>Sair da conta</button><br/><br/>
+        </div>
+      )}
 
       <div className='container'>
         <h2>Usuários</h2>
@@ -153,6 +189,7 @@ export default function App() {
         <input type='password' value={senha} placeholder='Digite sua senha' onChange={(e) => setSenha(e.target.value)}/><br/>
 
         <button onClick={novoUsuario}>Cadastrar</button> <br/>
+        <button onClick={logarUsuario}>Fazer login</button>
       </div> <br/>
 
       <hr/> <br/>

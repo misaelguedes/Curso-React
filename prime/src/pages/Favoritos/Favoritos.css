@@ -36,3 +36,7 @@
     color: #116FEB;
     margin-right: 14px;
 }
+
+.meus-filmes button {
+    cursor: pointer;
+}

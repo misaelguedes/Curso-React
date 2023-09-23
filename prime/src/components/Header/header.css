@@ -23,3 +23,8 @@ header {
     color: #000000;
     border-radius: 4px;
 }
+
+.favoritos:hover {
+    background-color: rgb(179, 179, 179);
+    transition: all 0.5s;
+}

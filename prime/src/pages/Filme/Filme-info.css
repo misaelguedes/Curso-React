@@ -8,6 +8,7 @@
 }
 
 .filme-info h1 {
+    color: #FFF;
     margin: 14px 0;
 }
 
@@ -20,11 +21,17 @@
 }
 
 .filme-info h3 {
+    color: #FFF;
     margin-top: 14px;
 }
 
 .filme-info span {
+    color: #FFF;
     margin: 8px 0;
+}
+
+.filme-info strong {
+    color: #FFF;
 }
 
 .area-buttons {

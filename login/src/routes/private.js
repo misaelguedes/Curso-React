@@ -16,7 +16,6 @@ export default function Private({children}) {
                     const userData = {
                         uid: user.uid,
                         email: user.email,
-
                     }
 
                     localStorage.setItem('@detailUser', JSON.stringify(userData))
@@ -36,7 +35,7 @@ export default function Private({children}) {
     }, [])
 
     if (loading) {
-        <div></div>
+        return <div></div>
     }
 
     if (!signed) {

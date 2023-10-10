@@ -9,6 +9,14 @@ export default function SignUp() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    function handleSubmit(e) {
+        e.preventDefault()
+
+        if (name !== '' && email !== '' && password !== '') {
+            
+        }
+    }
+
     return (
         <div className='container-center'>
             <div className='login'>
@@ -16,7 +24,7 @@ export default function SignUp() {
                     <img src={logo} alt='Logo do sistema de chamados'/>
                 </div>
 
-                <form>
+                <form onSubmit={handleSubmit}>
                     <h1>Nova Conta</h1>
                     <input type='text' placeholder='Seu nome' value={name} onChange={(e) => setName(e.target.value)}/>
                     <input type='text' placeholder='email@email.com' value={email} onChange={(e) => setEmail(e.target.value)}/>

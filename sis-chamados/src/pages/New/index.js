@@ -193,7 +193,7 @@ export default function New() {
                         </div>
                         <label>Complemento</label>
                         <textarea type='text' placeholder='Descreva seu problema (opcional)' value={complemento} onChange={(e) => setComplemento(e.target.value)}/>
-                        <button type='submit'>{id ? 'Editar' : 'Registrar'}</button>
+                        <button type='submit'>{id ? 'Salvar' : 'Registrar'}</button>
                     </form>
                 </div>
             </div>

@@ -11,6 +11,8 @@ import { db } from "../../Services/firebaseConnection"
 
 import {format} from 'date-fns'
 
+import Modal from "../../components/Modal"
+
 import './Dashboard.css'
 
 const listRef = collection(db, 'chamados')
@@ -168,6 +170,8 @@ export default function Dashboard() {
                 </>
 
             </div>
+
+            <Modal/>
 
         </div>
     )

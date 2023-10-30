@@ -1,0 +1,55 @@
+@keyframes entering {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+.modal .modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    max-width: 400px;
+    top: 15%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 4em 2em;
+    background-color: black;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    animation: entering 0.5s ease-in-out;
+}
+
+.close {
+    position: absolute;
+    display: flex;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(255, 0, 0, 0.747);
+    border: 8px;
+    transition: all 0.2s;
+}
+
+.close:hover {
+    background-color: red;
+}
+
+.modal img {
+    width: 300px;
+    border-radius: 5px;
+}

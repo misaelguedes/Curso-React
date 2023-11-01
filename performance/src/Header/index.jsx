@@ -1,11 +1,9 @@
+import { memo } from "react"
 
-let renderCount = 0;
-
-export function Header() {
-  renderCount++;
-  
+export function Header({name}) {
   return (
-   <h3>renderizou {renderCount}</h3>
+   <h3>Bem-vindo(a) {name}</h3>
   )
 }
 
+export const MemorizedHeader = memo(Header)

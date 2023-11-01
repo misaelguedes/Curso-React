@@ -1,7 +1,8 @@
+import { useState } from 'react'
 import './App.css'
-import { Header } from './Header';
+import { MemorizedHeader } from './Header';
 
-import { useForm } from 'react-hook-form'
+/* import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -9,7 +10,7 @@ const schema = z.object({
   name: z.string().nonempty("O campo nome é obrigatório!"),
   email: z.string("Digite um e-mail válido.").nonempty("O campo e-mail é obrigatório!"),
   username: z.string().min(3, "O username deve ter pelo menos 3 caracteres.").max(10, "O username deve ter no máximo 10 caracteres.").nonempty("O campo username é obrigatório!")
-})
+}) */
 
 function App() {
 
@@ -27,7 +28,7 @@ function App() {
       email: emailRef.current?.value,
       username: usernameRef.current?.value,
     })
-  } */
+  }
 
   const {register, handleSubmit, formState: { errors }} = useForm({
     resolver: zodResolver(schema)
@@ -35,15 +36,30 @@ function App() {
 
   function handleSave(data) {
     console.log(data)
-  }
+  } */
 
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
 
   return (
     <div className="container">
       <h1>React</h1>
-      <Header/>
+      <MemorizedHeader name={name}/>
 
-      <form className="form" onSubmit={handleSubmit(handleSave)}>
+      <p>Nome:</p>
+      <input placeholder='Digite seu nome...' value={name} onChange={(e) => setName(e.target.value)}/>
+
+      <br/>
+
+      <p>E-mail:</p>
+      <input placeholder='Digite seu e-mail...' value={email} onChange={(e) => setEmail(e.target.value)}/>
+    </div>
+  )
+}
+
+export default App
+
+/* <form className="form" onSubmit={handleSubmit(handleSave)}>
         <input
           type="text"
           placeholder="Digite seu nome..."
@@ -72,9 +88,4 @@ function App() {
         {errors.username && <p className='error'>{errors.username.message}</p>}
 
         <button className="button" type="submit">Enviar</button>
-      </form>
-    </div>
-  )
-}
-
-export default App
+      </form> */
